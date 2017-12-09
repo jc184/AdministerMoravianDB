@@ -1,2 +1,2 @@
 # AdministerMoravianDB
-A JSF web application that allows a database to be administered with CRUD operations via a web interface
+A JSF web application that allows a database to be administered with CRUD operations via a web interface. Created using NetBeans 8.2, and by using this IDE I created this web application easily in under 10 minutes. The database in question, 'Moravian', was designed using MySQL Workbench and it can be created by running the included SQL Create script. It will also be used by a proposed e-Commerce application for buying Mountain Bikes and Bike accessories online, but it is generic and the database could be used for many different e-commerce products.
