@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCustomerOrderTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCustomerOrderLabel_orderid}" for="orderid" />
+                    <h:inputText id="orderid" value="#{customerOrderController.selected.orderid}" title="#{bundle.CreateCustomerOrderTitle_orderid}" required="true" requiredMessage="#{bundle.CreateCustomerOrderRequiredMessage_orderid}"/>
+                    <h:outputLabel value="#{bundle.CreateCustomerOrderLabel_amount}" for="amount" />
+                    <h:inputText id="amount" value="#{customerOrderController.selected.amount}" title="#{bundle.CreateCustomerOrderTitle_amount}" required="true" requiredMessage="#{bundle.CreateCustomerOrderRequiredMessage_amount}"/>
+                    <h:outputLabel value="#{bundle.CreateCustomerOrderLabel_orderdate}" for="orderdate" />
+                    <h:inputText id="orderdate" value="#{customerOrderController.selected.orderdate}" title="#{bundle.CreateCustomerOrderTitle_orderdate}" required="true" requiredMessage="#{bundle.CreateCustomerOrderRequiredMessage_orderdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCustomerOrderLabel_confirmationNumber}" for="confirmationNumber" />
+                    <h:inputText id="confirmationNumber" value="#{customerOrderController.selected.confirmationNumber}" title="#{bundle.CreateCustomerOrderTitle_confirmationNumber}" required="true" requiredMessage="#{bundle.CreateCustomerOrderRequiredMessage_confirmationNumber}"/>
+                    <h:outputLabel value="#{bundle.CreateCustomerOrderLabel_customerCustomerid}" for="customerCustomerid" />
+                    <h:selectOneMenu id="customerCustomerid" value="#{customerOrderController.selected.customerCustomerid}" title="#{bundle.CreateCustomerOrderTitle_customerCustomerid}" required="true" requiredMessage="#{bundle.CreateCustomerOrderRequiredMessage_customerCustomerid}">
+                        <f:selectItems value="#{customerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{customerOrderController.create}" value="#{bundle.CreateCustomerOrderSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{customerOrderController.prepareList}" value="#{bundle.CreateCustomerOrderShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCustomerOrderIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

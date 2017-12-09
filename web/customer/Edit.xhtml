@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCustomerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_customerid}" for="customerid" />
+                    <h:inputText id="customerid" value="#{customerController.selected.customerid}" title="#{bundle.EditCustomerTitle_customerid}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_customerid}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{customerController.selected.firstname}" title="#{bundle.EditCustomerTitle_firstname}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_firstname}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{customerController.selected.lastname}" title="#{bundle.EditCustomerTitle_lastname}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_lastname}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_addressline1}" for="addressline1" />
+                    <h:inputText id="addressline1" value="#{customerController.selected.addressline1}" title="#{bundle.EditCustomerTitle_addressline1}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_addressline1}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_addressline2}" for="addressline2" />
+                    <h:inputText id="addressline2" value="#{customerController.selected.addressline2}" title="#{bundle.EditCustomerTitle_addressline2}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_addressline2}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{customerController.selected.city}" title="#{bundle.EditCustomerTitle_city}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_city}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_postcode}" for="postcode" />
+                    <h:inputText id="postcode" value="#{customerController.selected.postcode}" title="#{bundle.EditCustomerTitle_postcode}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_postcode}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_country}" for="country" />
+                    <h:inputText id="country" value="#{customerController.selected.country}" title="#{bundle.EditCustomerTitle_country}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_country}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_company}" for="company" />
+                    <h:inputText id="company" value="#{customerController.selected.company}" title="#{bundle.EditCustomerTitle_company}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_company}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_creditcardexpiry}" for="creditcardexpiry" />
+                    <h:inputText id="creditcardexpiry" value="#{customerController.selected.creditcardexpiry}" title="#{bundle.EditCustomerTitle_creditcardexpiry}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_creditcardexpiry}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_creditcardnumber}" for="creditcardnumber" />
+                    <h:inputText id="creditcardnumber" value="#{customerController.selected.creditcardnumber}" title="#{bundle.EditCustomerTitle_creditcardnumber}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_creditcardnumber}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_creditcardtype}" for="creditcardtype" />
+                    <h:inputText id="creditcardtype" value="#{customerController.selected.creditcardtype}" title="#{bundle.EditCustomerTitle_creditcardtype}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_creditcardtype}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_emailaddress}" for="emailaddress" />
+                    <h:inputText id="emailaddress" value="#{customerController.selected.emailaddress}" title="#{bundle.EditCustomerTitle_emailaddress}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_emailaddress}"/>
+                    <h:outputLabel value="#{bundle.EditCustomerLabel_loginpassword}" for="loginpassword" />
+                    <h:inputText id="loginpassword" value="#{customerController.selected.loginpassword}" title="#{bundle.EditCustomerTitle_loginpassword}" required="true" requiredMessage="#{bundle.EditCustomerRequiredMessage_loginpassword}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{customerController.update}" value="#{bundle.EditCustomerSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCustomerViewLink}"/>
+                <br />
+                <h:commandLink action="#{customerController.prepareList}" value="#{bundle.EditCustomerShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCustomerIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
