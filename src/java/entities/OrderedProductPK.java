@@ -20,42 +20,42 @@ public class OrderedProductPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "customer_order_orderid")
-    private int customerOrderOrderid;
+    @Column(name = "customer_order_id")
+    private int customerOrderId;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "product_productid")
-    private int productProductid;
+    @Column(name = "product_id")
+    private int productId;
 
     public OrderedProductPK() {
     }
 
-    public OrderedProductPK(int customerOrderOrderid, int productProductid) {
-        this.customerOrderOrderid = customerOrderOrderid;
-        this.productProductid = productProductid;
+    public OrderedProductPK(int customerOrderId, int productId) {
+        this.customerOrderId = customerOrderId;
+        this.productId = productId;
     }
 
-    public int getCustomerOrderOrderid() {
-        return customerOrderOrderid;
+    public int getCustomerOrderId() {
+        return customerOrderId;
     }
 
-    public void setCustomerOrderOrderid(int customerOrderOrderid) {
-        this.customerOrderOrderid = customerOrderOrderid;
+    public void setCustomerOrderId(int customerOrderId) {
+        this.customerOrderId = customerOrderId;
     }
 
-    public int getProductProductid() {
-        return productProductid;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProductProductid(int productProductid) {
-        this.productProductid = productProductid;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) customerOrderOrderid;
-        hash += (int) productProductid;
+        hash += (int) customerOrderId;
+        hash += (int) productId;
         return hash;
     }
 
@@ -66,10 +66,10 @@ public class OrderedProductPK implements Serializable {
             return false;
         }
         OrderedProductPK other = (OrderedProductPK) object;
-        if (this.customerOrderOrderid != other.customerOrderOrderid) {
+        if (this.customerOrderId != other.customerOrderId) {
             return false;
         }
-        if (this.productProductid != other.productProductid) {
+        if (this.productId != other.productId) {
             return false;
         }
         return true;
@@ -77,7 +77,7 @@ public class OrderedProductPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.OrderedProductPK[ customerOrderOrderid=" + customerOrderOrderid + ", productProductid=" + productProductid + " ]";
+        return "entities.OrderedProductPK[ customerOrderId=" + customerOrderId + ", productId=" + productId + " ]";
     }
     
 }

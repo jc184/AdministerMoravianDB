@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
-    , @NamedQuery(name = "Customer.findByCustomerid", query = "SELECT c FROM Customer c WHERE c.customerid = :customerid")
+    , @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id")
     , @NamedQuery(name = "Customer.findByFirstname", query = "SELECT c FROM Customer c WHERE c.firstname = :firstname")
     , @NamedQuery(name = "Customer.findByLastname", query = "SELECT c FROM Customer c WHERE c.lastname = :lastname")
     , @NamedQuery(name = "Customer.findByAddressline1", query = "SELECT c FROM Customer c WHERE c.addressline1 = :addressline1")
@@ -52,8 +52,8 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "customerid")
-    private Integer customerid;
+    @Column(name = "id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 225)
@@ -125,12 +125,12 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(Integer customerid) {
-        this.customerid = customerid;
+    public Customer(Integer id) {
+        this.id = id;
     }
 
-    public Customer(Integer customerid, String firstname, String lastname, String addressline1, String addressline2, String city, String postcode, String country, String company, String creditcardexpiry, String creditcardnumber, String creditcardtype, String emailaddress, String loginpassword) {
-        this.customerid = customerid;
+    public Customer(Integer id, String firstname, String lastname, String addressline1, String addressline2, String city, String postcode, String country, String company, String creditcardexpiry, String creditcardnumber, String creditcardtype, String emailaddress, String loginpassword) {
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.addressline1 = addressline1;
@@ -146,12 +146,12 @@ public class Customer implements Serializable {
         this.loginpassword = loginpassword;
     }
 
-    public Integer getCustomerid() {
-        return customerid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCustomerid(Integer customerid) {
-        this.customerid = customerid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -270,7 +270,7 @@ public class Customer implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (customerid != null ? customerid.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -281,7 +281,7 @@ public class Customer implements Serializable {
             return false;
         }
         Customer other = (Customer) object;
-        if ((this.customerid == null && other.customerid != null) || (this.customerid != null && !this.customerid.equals(other.customerid))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -289,7 +289,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Customer[ customerid=" + customerid + " ]";
+        return "entities.Customer[ id=" + id + " ]";
     }
     
 }

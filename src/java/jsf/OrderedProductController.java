@@ -83,8 +83,8 @@ public class OrderedProductController implements Serializable {
 
     public String create() {
         try {
-            current.getOrderedProductPK().setCustomerOrderOrderid(current.getCustomerOrder().getOrderid());
-            current.getOrderedProductPK().setProductProductid(current.getProduct().getProductid());
+            current.getOrderedProductPK().setCustomerOrderId(current.getCustomerOrder().getId());
+            current.getOrderedProductPK().setProductId(current.getProduct().getId());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("OrderedProductCreated"));
             return prepareCreate();
@@ -102,8 +102,8 @@ public class OrderedProductController implements Serializable {
 
     public String update() {
         try {
-            current.getOrderedProductPK().setCustomerOrderOrderid(current.getCustomerOrder().getOrderid());
-            current.getOrderedProductPK().setProductProductid(current.getProduct().getProductid());
+            current.getOrderedProductPK().setCustomerOrderId(current.getCustomerOrder().getId());
+            current.getOrderedProductPK().setProductId(current.getProduct().getId());
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("OrderedProductUpdated"));
             return "View";
@@ -218,16 +218,16 @@ public class OrderedProductController implements Serializable {
             entities.OrderedProductPK key;
             String values[] = value.split(SEPARATOR_ESCAPED);
             key = new entities.OrderedProductPK();
-            key.setCustomerOrderOrderid(Integer.parseInt(values[0]));
-            key.setProductProductid(Integer.parseInt(values[1]));
+            key.setCustomerOrderId(Integer.parseInt(values[0]));
+            key.setProductId(Integer.parseInt(values[1]));
             return key;
         }
 
         String getStringKey(entities.OrderedProductPK value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value.getCustomerOrderOrderid());
+            sb.append(value.getCustomerOrderId());
             sb.append(SEPARATOR);
-            sb.append(value.getProductProductid());
+            sb.append(value.getProductId());
             return sb.toString();
         }
 

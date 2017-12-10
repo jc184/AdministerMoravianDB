@@ -15,16 +15,18 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditProductLabel_productid}" for="productid" />
-                    <h:inputText id="productid" value="#{productController.selected.productid}" title="#{bundle.EditProductTitle_productid}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_productid}"/>
+                    <h:outputLabel value="#{bundle.EditProductLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{productController.selected.id}" title="#{bundle.EditProductTitle_id}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditProductLabel_code}" for="code" />
+                    <h:inputText id="code" value="#{productController.selected.code}" title="#{bundle.EditProductTitle_code}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_code}"/>
                     <h:outputLabel value="#{bundle.EditProductLabel_name}" for="name" />
                     <h:inputText id="name" value="#{productController.selected.name}" title="#{bundle.EditProductTitle_name}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_name}"/>
                     <h:outputLabel value="#{bundle.EditProductLabel_price}" for="price" />
                     <h:inputText id="price" value="#{productController.selected.price}" title="#{bundle.EditProductTitle_price}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_price}"/>
                     <h:outputLabel value="#{bundle.EditProductLabel_description}" for="description" />
                     <h:inputText id="description" value="#{productController.selected.description}" title="#{bundle.EditProductTitle_description}" />
-                    <h:outputLabel value="#{bundle.EditProductLabel_categoryCategoryid}" for="categoryCategoryid" />
-                    <h:selectOneMenu id="categoryCategoryid" value="#{productController.selected.categoryCategoryid}" title="#{bundle.EditProductTitle_categoryCategoryid}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_categoryCategoryid}">
+                    <h:outputLabel value="#{bundle.EditProductLabel_categoryId}" for="categoryId" />
+                    <h:selectOneMenu id="categoryId" value="#{productController.selected.categoryId}" title="#{bundle.EditProductTitle_categoryId}" required="true" requiredMessage="#{bundle.EditProductRequiredMessage_categoryId}">
                         <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>

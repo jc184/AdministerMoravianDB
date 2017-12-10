@@ -224,7 +224,7 @@ public class ProductController implements Serializable {
             }
             if (object instanceof Product) {
                 Product o = (Product) object;
-                return getStringKey(o.getProductid());
+                return getStringKey(o.getId());
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Product.class.getName());
             }

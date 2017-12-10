@@ -13,6 +13,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CustomerOrder.findAll", query = "SELECT c FROM CustomerOrder c")
-    , @NamedQuery(name = "CustomerOrder.findByOrderid", query = "SELECT c FROM CustomerOrder c WHERE c.orderid = :orderid")
+    , @NamedQuery(name = "CustomerOrder.findById", query = "SELECT c FROM CustomerOrder c WHERE c.id = :id")
     , @NamedQuery(name = "CustomerOrder.findByAmount", query = "SELECT c FROM CustomerOrder c WHERE c.amount = :amount")
     , @NamedQuery(name = "CustomerOrder.findByOrderdate", query = "SELECT c FROM CustomerOrder c WHERE c.orderdate = :orderdate")
     , @NamedQuery(name = "CustomerOrder.findByConfirmationNumber", query = "SELECT c FROM CustomerOrder c WHERE c.confirmationNumber = :confirmationNumber")})
@@ -43,10 +45,10 @@ public class CustomerOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "orderid")
-    private Integer orderid;
+    @Column(name = "id")
+    private Integer id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -61,7 +63,7 @@ public class CustomerOrder implements Serializable {
     @NotNull
     @Column(name = "confirmation_number")
     private int confirmationNumber;
-    @JoinColumn(name = "customer_customerid", referencedColumnName = "customerid")
+    @JoinColumn(name = "customer_customerid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Customer customerCustomerid;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
@@ -70,23 +72,23 @@ public class CustomerOrder implements Serializable {
     public CustomerOrder() {
     }
 
-    public CustomerOrder(Integer orderid) {
-        this.orderid = orderid;
+    public CustomerOrder(Integer id) {
+        this.id = id;
     }
 
-    public CustomerOrder(Integer orderid, BigDecimal amount, Date orderdate, int confirmationNumber) {
-        this.orderid = orderid;
+    public CustomerOrder(Integer id, BigDecimal amount, Date orderdate, int confirmationNumber) {
+        this.id = id;
         this.amount = amount;
         this.orderdate = orderdate;
         this.confirmationNumber = confirmationNumber;
     }
 
-    public Integer getOrderid() {
-        return orderid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setOrderid(Integer orderid) {
-        this.orderid = orderid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public BigDecimal getAmount() {
@@ -133,7 +135,7 @@ public class CustomerOrder implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (orderid != null ? orderid.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -144,7 +146,7 @@ public class CustomerOrder implements Serializable {
             return false;
         }
         CustomerOrder other = (CustomerOrder) object;
-        if ((this.orderid == null && other.orderid != null) || (this.orderid != null && !this.orderid.equals(other.orderid))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -152,7 +154,7 @@ public class CustomerOrder implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.CustomerOrder[ orderid=" + orderid + " ]";
+        return "entities.CustomerOrder[ id=" + id + " ]";
     }
     
 }

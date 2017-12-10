@@ -224,7 +224,7 @@ public class CustomerOrderController implements Serializable {
             }
             if (object instanceof CustomerOrder) {
                 CustomerOrder o = (CustomerOrder) object;
-                return getStringKey(o.getOrderid());
+                return getStringKey(o.getId());
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + CustomerOrder.class.getName());
             }

@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OrderedProduct.findAll", query = "SELECT o FROM OrderedProduct o")
-    , @NamedQuery(name = "OrderedProduct.findByCustomerOrderOrderid", query = "SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.customerOrderOrderid = :customerOrderOrderid")
-    , @NamedQuery(name = "OrderedProduct.findByProductProductid", query = "SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.productProductid = :productProductid")
+    , @NamedQuery(name = "OrderedProduct.findByCustomerOrderId", query = "SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.customerOrderId = :customerOrderId")
+    , @NamedQuery(name = "OrderedProduct.findByProductId", query = "SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.productId = :productId")
     , @NamedQuery(name = "OrderedProduct.findByQuantity", query = "SELECT o FROM OrderedProduct o WHERE o.quantity = :quantity")})
 public class OrderedProduct implements Serializable {
 
@@ -39,10 +39,10 @@ public class OrderedProduct implements Serializable {
     @NotNull
     @Column(name = "quantity")
     private short quantity;
-    @JoinColumn(name = "customer_order_orderid", referencedColumnName = "orderid", insertable = false, updatable = false)
+    @JoinColumn(name = "customer_order_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private CustomerOrder customerOrder;
-    @JoinColumn(name = "product_productid", referencedColumnName = "productid", insertable = false, updatable = false)
+    @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;
 
@@ -58,8 +58,8 @@ public class OrderedProduct implements Serializable {
         this.quantity = quantity;
     }
 
-    public OrderedProduct(int customerOrderOrderid, int productProductid) {
-        this.orderedProductPK = new OrderedProductPK(customerOrderOrderid, productProductid);
+    public OrderedProduct(int customerOrderId, int productId) {
+        this.orderedProductPK = new OrderedProductPK(customerOrderId, productId);
     }
 
     public OrderedProductPK getOrderedProductPK() {
