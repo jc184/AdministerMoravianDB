@@ -18,7 +18,7 @@ USE `moravian` ;
 -- Table `moravian`.`customer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `moravian`.`customer` (
-  `customerid` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(225) NOT NULL,
   `lastname` VARCHAR(255) NOT NULL,
   `addressline1` VARCHAR(225) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `moravian`.`customer` (
   `creditcardtype` VARCHAR(225) NOT NULL,
   `emailaddress` VARCHAR(255) NOT NULL,
   `loginpassword` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`customerid`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -40,9 +40,9 @@ ENGINE = InnoDB;
 -- Table `moravian`.`category`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `moravian`.`category` (
-  `categoryid` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `category_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`categoryid`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -50,16 +50,17 @@ ENGINE = InnoDB;
 -- Table `moravian`.`product`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `moravian`.`product` (
-  `productid` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(45) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `price` DOUBLE NOT NULL,
   `description` VARCHAR(255) NULL,
-  `category_categoryid` INT NOT NULL,
-  PRIMARY KEY (`productid`),
-  INDEX `fk_product_category1_idx` (`category_categoryid` ASC),
+  `category_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_product_category1_idx` (`category_id` ASC),
   CONSTRAINT `fk_product_category1`
-    FOREIGN KEY (`category_categoryid`)
-    REFERENCES `moravian`.`category` (`categoryid`)
+    FOREIGN KEY (`category_id`)
+    REFERENCES `moravian`.`category` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -69,16 +70,16 @@ ENGINE = InnoDB;
 -- Table `moravian`.`customer_order`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `moravian`.`customer_order` (
-  `orderid` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `amount` DECIMAL(6,2) NOT NULL,
   `orderdate` DATETIME NOT NULL,
   `confirmation_number` INT NOT NULL,
   `customer_customerid` INT NOT NULL,
-  PRIMARY KEY (`orderid`),
+  PRIMARY KEY (`id`),
   INDEX `fk_order_customer1_idx` (`customer_customerid` ASC),
   CONSTRAINT `fk_order_customer1`
     FOREIGN KEY (`customer_customerid`)
-    REFERENCES `moravian`.`customer` (`customerid`)
+    REFERENCES `moravian`.`customer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -88,20 +89,20 @@ ENGINE = InnoDB;
 -- Table `moravian`.`ordered_product`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `moravian`.`ordered_product` (
-  `customer_order_orderid` INT NOT NULL,
-  `product_productid` INT NOT NULL,
+  `customer_order_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
   `quantity` SMALLINT(4) NOT NULL,
-  PRIMARY KEY (`customer_order_orderid`, `product_productid`),
-  INDEX `fk_customer_order_has_product_product1_idx` (`product_productid` ASC),
-  INDEX `fk_customer_order_has_product_customer_order1_idx` (`customer_order_orderid` ASC),
+  PRIMARY KEY (`customer_order_id`, `product_id`),
+  INDEX `fk_customer_order_has_product_product1_idx` (`product_id` ASC),
+  INDEX `fk_customer_order_has_product_customer_order1_idx` (`customer_order_id` ASC),
   CONSTRAINT `fk_customer_order_has_product_customer_order1`
-    FOREIGN KEY (`customer_order_orderid`)
-    REFERENCES `moravian`.`customer_order` (`orderid`)
+    FOREIGN KEY (`customer_order_id`)
+    REFERENCES `moravian`.`customer_order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_customer_order_has_product_product1`
-    FOREIGN KEY (`product_productid`)
-    REFERENCES `moravian`.`product` (`productid`)
+    FOREIGN KEY (`product_id`)
+    REFERENCES `moravian`.`product` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
